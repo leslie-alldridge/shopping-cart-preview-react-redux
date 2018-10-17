@@ -1,2 +1,7 @@
-# shopping-cart-preview-react-redux
-react-redux-shopping-cart-preview
+Learning Objectives:
+
+Goals:
+
+Todos:
+
+Reflections:
