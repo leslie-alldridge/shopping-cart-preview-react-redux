@@ -6,6 +6,7 @@ import PickupSavings from './components/PickupSavings/PickupSavings';
 import TaxesFees from './components/TaxesFees/TaxesFees';
 import EstimatedTotal from './components/EstimatedTotal/EstimatedTotal';
 import ItemDetails from './components/ItemDetails/ItemDetails';
+import PromoCodeDiscount from './components/PromoCode/PromoCode';
 import './App.css';
 
 class App extends Component {
@@ -16,9 +17,24 @@ class App extends Component {
       total: 100,
       pickupSavings: -3.85,
       taxes: 0,
-      estimatedTotal: 0
+      estimatedTotal: 0,
+      disablePromoButton: false
     };
   }
+
+  componentDidMount = () => {
+    this.setState(
+      {
+        taxes: (this.state.total + this.state.pickupSavings) * 0.15
+      },
+      function() {
+        this.setState({
+          estimatedTotal:
+            this.state.total + this.state.pickupSavings + this.state.taxes
+        });
+      }
+    );
+  };
 
   render() {
     return (
@@ -31,6 +47,10 @@ class App extends Component {
           <EstimatedTotal price={this.state.estimatedTotal.toFixed(2)} />
           <ItemDetails price={this.state.estimatedTotal.toFixed(2)} />
           <hr />
+          <PromoCodeDiscount
+            giveDiscount={() => this.giveDiscountHandler()}
+            isDisabled={this.state.disablePromoButton}
+          />
         </Grid>
       </div>
     );
