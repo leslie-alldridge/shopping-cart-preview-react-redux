@@ -11,3 +11,12 @@
 .purchase-card > .show-grid {
   padding-bottom: 1.5em;
 }
+/* this can be done inline because app renders first so the outline still shows */
+.item-details-button:focus {
+  outline: none;
+}
+
+.price-strike {
+  text-decoration-line: line-through;
+  color: gray;
+}
